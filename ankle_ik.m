@@ -8,17 +8,17 @@ R = roty(ty) * rotx(tx);
 RL = roty(tML);
 RR = roty(tMR);
 
-pFL = [-L1, d, 0]';
-pFR = [-L1, -d, 0]';
+pFL = [-L1, d, 0]'
+pFR = [-L1, -d, 0]'
 
-pML = [-L1, d, h1]';
-pMR = [-L1, -d, h2]';
+pML = [-L1, d, h1]'
+pMR = [-L1, -d, h2]'
 
-pFL_ = R * pFL;
-pFR_ = R * pFR;
+pFL_ = R * pFL
+pFR_ = R * pFR
 
-pML_ = RL * [-L1, d, 0]' + [0, 0, h1]';
-pMR_ = RR * [-L1, -d, 0]' + [0, 0, h2]';
+pML_ = RL * [-L1, d, 0]' + [0, 0, h1]'
+pMR_ = RR * [-L1, -d, 0]' + [0, 0, h2]'
 
 dL1 = pML_ - pFL_;
 dL2 = pMR_ - pFR_;
