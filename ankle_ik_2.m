@@ -6,12 +6,6 @@ d = 64.3 / 2.0;
 h1 = 112;
 h2 = 65;
 
-[tMLx, tMRx] = ankle_ik_func(L1, d, h1, h2, tx+dt, ty);
-[tMLy, tMRy] = ankle_ik_func(L1, d, h1, h2, tx, ty+dt);
-
-JF = [tMLx / dt, tMLy / dt; tMRx / dt, tMRy / dt];
-J = pinv(JF);
-
 start_x = -20;
 step_x = 0.2;
 end_x = 20;
