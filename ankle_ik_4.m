@@ -12,11 +12,11 @@ h2 = 65;
 
 % function mesh
 start_x = -20;
-step_x = 0.5;
+step_x = 0.1;
 end_x = 20;
 
 start_y = -80;
-step_y = 0.5;
+step_y = 0.1;
 end_y = 80;
 
 [tx_mat, ty_mat] = meshgrid(start_x:step_x:end_x, start_y:step_y:end_y);
@@ -60,7 +60,9 @@ height  = [0];
 count = 0;
 err_v = f(txy(1), txy(2), d, h1, h2, L1, tmL / 180 * pi, tmR / 180 * pi);
 err = err_v' * err_v;
-while count < 50 && err > 1e-9
+err_list = [err];
+indexs = [count];
+while count < 50 && err > 1e-6
     df_mat = df(txy(1), txy(2), d, h1, h2, L1, tmL / 180 * pi, tmR / 180 * pi);
     J      = pinv(df_mat);
     f_     = f(txy(1), txy(2), d, h1, h2, L1, tmL / 180 * pi, tmR / 180 * pi);
@@ -73,12 +75,16 @@ while count < 50 && err > 1e-9
 
     % plot3(txy(1), txy(2), 0)
 
-    err_v = f(txy(1), txy(2), d, h1, h2, L1, tmL, tmR);
+    err_v = f(txy(1), txy(2), d, h1, h2, L1, tmL / 180 * pi, tmR / 180 * pi);
     err   = err_v' * err_v;
     count = count + 1;
+
+    err_list = [err_list, err];
+    indexs = [indexs, count];
 end
 
 plot3(tx_list, ty_list, height, "-")
+% plot(indexs, err_list)
 
 tx = txy(1) * 180 / pi
 ty = txy(2) * 180 / pi
