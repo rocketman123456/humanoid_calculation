@@ -40,6 +40,6 @@ for tx = start_x:step_x:end_x
 end
 
 mesh(tx_mat, ty_mat, t1_mat);
-% mesh(tx_mat, ty_mat, t2_mat);
+mesh(tx_mat, ty_mat, t2_mat);
 
 
